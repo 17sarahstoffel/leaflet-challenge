@@ -31,6 +31,10 @@ function mapColor(depth) {
     };
 };
 
+// creating a radius function based on the magintude of the earthquake
+function markerSize(mag) {
+    return mag *4
+};
 
 // Getting our GeoJSON data
 d3.json(link).then(function(data) {
