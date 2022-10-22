@@ -57,6 +57,11 @@ d3.json(link).then(function(data) {
             });
         },
 
+        //adding the popup information
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup("<h3>Location: " + feature.properties.place + "</h3><hr><h3>Magnitude: " + feature.properties.mag + "</h3>"); 
+        },
+
     }).addTo(myMap);
   });
   
