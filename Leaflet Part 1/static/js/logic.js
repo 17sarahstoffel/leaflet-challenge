@@ -13,10 +13,17 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(myMap);
 
+
 // Getting our GeoJSON data
 d3.json(link).then(function(data) {
+
     // Creating a GeoJSON layer with the retrieved data
-    L.geoJson(data).addTo(myMap);
+    L.geoJson(data, {
+        //changing marker to cirlce
+        pointToLayer: function(feature, latlng) {
+            return new L.CircleMarker(latlng)
+        },
+    }).addTo(myMap);
   });
   
-  
+ 
