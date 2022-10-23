@@ -28,7 +28,7 @@ d3.json(link).then(function(data) {
             case depth > 90:
                 return "red";
             case depth > 70:
-                return "redorange";
+                return "orangered";
             case depth > 50:
                 return "orange";
             case depth > 30:
@@ -63,6 +63,22 @@ d3.json(link).then(function(data) {
         },
 
     }).addTo(myMap);
-  });
-  
  
+    // Set up the legend.
+    let legend =L.control({position:'bottomright'});
+
+    legend.onAdd= function() {
+
+      let div = L.DomUtil.create('div', 'info legend');
+      let depth = [-10, 10, 30, 50, 70, 90];
+
+      for (let i = 0; i<depth.length; i++) {
+        div.innerHTML += 
+            '<i style="background: ' + mapColor(depth[i]+1) + '"></i> ' + 
+            depth[i] + (depth[i + 1]? '&ndash;' + depth[i + 1] + '<br>' : '+');
+      }
+      return div;
+    };
+    legend.addTo(myMap);
+
+});
